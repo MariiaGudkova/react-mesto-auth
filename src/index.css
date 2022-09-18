@@ -32,6 +32,8 @@
 
 @import url(./blocks/header/header.css);
 @import url(./blocks/header/__logo/header__logo.css);
+@import url(./blocks/header/__link-button/header__link-button.css);
+@import url(./blocks/header/__email-info/header__email-info.css);
 
 /* Profile styles */
 
@@ -63,7 +65,15 @@
 @import url(./blocks/element/__trash-button/_hidden/element__trash-button_hidden.css);
 @import url(./blocks/element/__trash-button-image/element__trash-button-image.css);
 
+/* Registration styles*/
+@import url(./blocks/registration/registration.css);
+@import url(./blocks/registration/__title/registration__title.css);
+@import url(./blocks/registration/__subtitle/registration__subtitle.css);
+
 /* Footer styles*/
 
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__info/footer__info.css);
+@import url(./blocks/form/__input/_email/form__input_email.css);
+@import url(./blocks/form/__input/_password/form__input_password.css);
+@import url(./blocks/form/__registration-button/form__registration-button.css);
