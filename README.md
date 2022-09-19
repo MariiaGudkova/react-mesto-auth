@@ -31,6 +31,6 @@ _В проекте был отработан навык работы с React :t
 
 ## **Cсылкa на GitHub Pages** 👀
 
-<a href="https://mariiagudkova.github.io/mesto-react" target="_blank">Сервис Mesto-React</a>
+<a href="https://mariiagudkova.github.io/mesto-react-auth" target="_blank">Сервис Mesto-React</a>
 
 <img src="https://komarev.com/ghpvc/?username=your-github-username&style=flat-square&color=9932CC" alt=""/>
