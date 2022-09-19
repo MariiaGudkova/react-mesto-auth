@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/MariiaGudkova/react-mesto-auth.git/static/css/main.b64af554.css",
-    "main.js": "/MariiaGudkova/react-mesto-auth.git/static/js/main.d4749cad.js",
+    "main.css": "/MariiaGudkova/react-mesto-auth.git/static/css/main.9916600d.css",
+    "main.js": "/MariiaGudkova/react-mesto-auth.git/static/js/main.1a5f92bb.js",
     "static/js/787.0fc3b920.chunk.js": "/MariiaGudkova/react-mesto-auth.git/static/js/787.0fc3b920.chunk.js",
     "static/media/Inter-Medium.woff?v=3.19": "/MariiaGudkova/react-mesto-auth.git/static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
     "static/media/Inter-Black.woff?v=3.19": "/MariiaGudkova/react-mesto-auth.git/static/media/Inter-Black.c6938660eec019fefd68.woff",
@@ -17,12 +17,12 @@
     "static/media/profile__edit-button.svg": "/MariiaGudkova/react-mesto-auth.git/static/media/profile__edit-button.6c7bf05444b9793fdf6e73a2dd202e7e.svg",
     "static/media/popup__close-icon.svg": "/MariiaGudkova/react-mesto-auth.git/static/media/popup__close-icon.039f1f5203f653b4bacde5e34ee2810b.svg",
     "static/media/profile__add-button.svg": "/MariiaGudkova/react-mesto-auth.git/static/media/profile__add-button.bed8c136e13907f5eefb86d62a5fe29e.svg",
-    "main.b64af554.css.map": "/MariiaGudkova/react-mesto-auth.git/static/css/main.b64af554.css.map",
-    "main.d4749cad.js.map": "/MariiaGudkova/react-mesto-auth.git/static/js/main.d4749cad.js.map",
+    "main.9916600d.css.map": "/MariiaGudkova/react-mesto-auth.git/static/css/main.9916600d.css.map",
+    "main.1a5f92bb.js.map": "/MariiaGudkova/react-mesto-auth.git/static/js/main.1a5f92bb.js.map",
     "787.0fc3b920.chunk.js.map": "/MariiaGudkova/react-mesto-auth.git/static/js/787.0fc3b920.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b64af554.css",
-    "static/js/main.d4749cad.js"
+    "static/css/main.9916600d.css",
+    "static/js/main.1a5f92bb.js"
   ]
 }
