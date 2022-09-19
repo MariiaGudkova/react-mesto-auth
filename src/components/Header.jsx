@@ -8,18 +8,19 @@ function Header(props) {
   return (
     <header className="header">
       <img className="header__logo" src={headerLogo} alt="Логотип" />
-      {loggedIn} :
-      <>
-        <p className="header__email-info">email</p>
-        <Link to="/sign-in" className="header__link-button">
-          {`${buttonText}`}
-        </Link>
-      </>
-      ?
-      <Link
-        to={location.pathname === "/sign-in" ? "/sign-up" : "/sign-in"}
-        className="header__link-button"
-      >{`${buttonText}`}</Link>
+      {{ loggedIn } && location.pathname === "/" ? (
+        <>
+          <p className="header__email-info">myemail@email</p>
+          <Link to="/sign-in" className="header__link-button">
+            {`${buttonText}`}
+          </Link>
+        </>
+      ) : (
+        <Link
+          to={location.pathname === "/sign-in" ? "/sign-up" : "/sign-in"}
+          className="header__link-button"
+        >{`${buttonText}`}</Link>
+      )}
     </header>
   );
 }

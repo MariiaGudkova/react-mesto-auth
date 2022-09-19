@@ -1,4 +1,6 @@
 .header__link-button {
+  position: absolute;
+  right: 0;
   margin: 51px 0 41px 0;
   padding: 0;
   text-decoration: none;

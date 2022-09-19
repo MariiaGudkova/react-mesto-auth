@@ -27,7 +27,7 @@ function App() {
   const [cards, setCards] = React.useState([]);
   const [cardToDelete, setCardToDelete] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
-  const loggedIn = false;
+  const loggedIn = true;
   const isOpen =
     isEditAvatarPopupOpen ||
     isEditProfilePopupOpen ||

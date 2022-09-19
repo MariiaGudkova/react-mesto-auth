@@ -1,4 +1,6 @@
 .header__email-info {
+  position: absolute;
+  right: 80px;
   margin: 51px 0 41px 0;
   padding: 0;
   text-decoration: none;
