@@ -1,0 +1,14 @@
+@media screen and (max-width: 600px) {
+  .header__menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: auto;
+    position: absolute;
+    top: -222px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}

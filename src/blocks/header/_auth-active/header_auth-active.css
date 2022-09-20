@@ -1,0 +1,7 @@
+@media screen and (max-width: 600px) {
+  .header_auth-active {
+    margin-top: 140px;
+    border-top: 1px solid rgb(84, 84, 84, 0.7);
+    transition: 1s ease-in-out;
+  }
+}

@@ -31,9 +31,21 @@
 /* Header styles */
 
 @import url(./blocks/header/header.css);
+@import url(./blocks/header/_auth/header_auth.css);
+@import url(./blocks/header/_auth-active/header_auth-active.css);
 @import url(./blocks/header/__logo/header__logo.css);
 @import url(./blocks/header/__link-button/header__link-button.css);
+@import url(./blocks/header/__link-button/_auth/header__link-button_auth.css);
 @import url(./blocks/header/__email-info/header__email-info.css);
+@import url(./blocks/header/__email-info/_auth/header__email-info_auth.css);
+@import url(./blocks/header/__menu/header__menu.css);
+@import url(./blocks/header/__menu/_active/header__menu_active.css);
+@import url(./blocks/header/__burger/header__burger.css);
+@import url(./blocks/header/__burger/_active/header__burger_active.css);
+@import url(./blocks/header/__burger-line/header__burger-line.css);
+@import url(./blocks/header/__cross/header__cross.css);
+@import url(./blocks/header/__cross/_active/header__cross_active.css);
+@import url(./blocks/header/__cross-line/header__cross-line.css);
 
 /* Profile styles */
 

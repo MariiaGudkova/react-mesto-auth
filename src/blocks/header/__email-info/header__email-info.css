@@ -1,6 +1,4 @@
 .header__email-info {
-  position: absolute;
-  right: 80px;
   margin: 51px 0 41px 0;
   padding: 0;
   text-decoration: none;
@@ -18,5 +16,13 @@
     margin: 34px 29px 26px 0;
     font-size: 14px;
     line-height: 17px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header__email-info {
+    margin: 0 0 18px 0;
+    font-size: 18px;
+    line-height: 22px;
   }
 }

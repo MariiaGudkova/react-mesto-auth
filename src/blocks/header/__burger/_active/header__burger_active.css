@@ -1,0 +1,21 @@
+.header__burger_active {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .header__burger_active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 34px 29px 26px 0;
+    list-style: none;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .header__burger:hover {
+    opacity: 0.6;
+  }
+}
