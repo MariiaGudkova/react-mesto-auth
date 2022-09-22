@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute.jsx";
 import "../index.css";
 import Header from "./Header.jsx";
@@ -11,8 +12,10 @@ import EditAvatarPopup from "./EditAvatarPopup.jsx";
 import AddPlacePopup from "./AddPlacePopup.jsx";
 import DeletePlacePopup from "./DeletePlacePopup.jsx";
 import ImagePopup from "./ImagePopup.jsx";
+import InfoTooltip from "./InfoTooltip";
 import Footer from "./Footer.jsx";
 import api from "../utils/api.js";
+import * as register from "../utils/auth.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 function App() {
@@ -22,11 +25,14 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
   const [cardInfo, setCardInfo] = React.useState({});
   const [cards, setCards] = React.useState([]);
   const [cardToDelete, setCardToDelete] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [authorizationSuccess, setAuthorizationSuccess] = React.useState(null);
+  const history = useHistory();
   const loggedIn = true;
   const isOpen =
     isEditAvatarPopupOpen ||
@@ -171,10 +177,29 @@ function App() {
     }
   }
 
+  async function hanldeAthorization(authData) {
+    const { email, password } = authData;
+    console.log(email, password);
+    try {
+      const response = await register(email, password);
+      console.log(response);
+      if (response) {
+        setIsInfoTooltipOpen(true);
+        setAuthorizationSuccess(true);
+        history.push("/sign-in");
+      }
+    } catch (e) {
+      console.error();
+      setIsInfoTooltipOpen(true);
+      setAuthorizationSuccess(true);
+    }
+  }
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
+    setIsInfoTooltipOpen(false);
     setSelectedCard(null);
     setCardToDelete(null);
   }
@@ -196,7 +221,7 @@ function App() {
         </ProtectedRoute>
         <Route path="/sign-up">
           <Header buttonText="Войти" loggedIn={loggedIn} />
-          <Register />
+          <Register onAuthorizationSubmit={hanldeAthorization} />
         </Route>
         <Route path="/sign-in">
           <Header buttonText="Регистрация" loggedIn={loggedIn} />
@@ -232,6 +257,11 @@ function App() {
         selectedCard={selectedCard}
         cardInfo={cardInfo}
         onClose={closeAllPopups}
+      />
+      <InfoTooltip
+        isOpen={isInfoTooltipOpen}
+        onClose={closeAllPopups}
+        isSuccess={authorizationSuccess}
       />
       <Footer />
     </CurrentUserContext.Provider>

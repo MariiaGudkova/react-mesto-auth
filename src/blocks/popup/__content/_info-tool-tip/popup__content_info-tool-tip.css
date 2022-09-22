@@ -1,0 +1,11 @@
+.popup__content_info-tool-tip {
+  text-align: center;
+  padding: 60px 36px 60px 36px;
+}
+
+@media screen and (max-width: 600px) {
+  .popup__content_info-tool-tip {
+    text-align: center;
+    padding: 50px 18px 50px 18px;
+  }
+}

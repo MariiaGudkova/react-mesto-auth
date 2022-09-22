@@ -1,13 +1,25 @@
 import React from "react";
 import RegistrationForm from "./RegistrationForm.jsx";
+import { useForm } from "../hooks/useForm.jsx";
+function Register(props) {
+  const { onAuthorizationSubmit } = props;
+  const { values, handleChange, setValues } = useForm({});
 
-function Register() {
+  async function handleSubmit(event) {
+    try {
+      event.preventDefault();
+      onAuthorizationSubmit(values);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   return (
     <RegistrationForm
       name="register-form"
       title="Регистрация"
       buttonText="Зарегистрироваться"
-      // onSubmit=""
+      onSubmit={handleSubmit}
       subtitleText="Уже зарегистрированы? Войти"
       linkAdress="/sign-in"
     >
@@ -15,23 +27,25 @@ function Register() {
         className="form__input form__input_email"
         id="email-register-input"
         type="email"
-        name="register-email"
+        name="email"
         placeholder="Email"
         required
         minLength="3"
         maxLength="64"
+        onChange={handleChange}
       />
       <span className="form__error email-input-error"></span>
       <input
         className="form__input form__input_password"
         id="password-register-input"
         type="password"
-        name="register-password"
+        name="password"
         placeholder="Пароль"
         required
         minLength="6"
         maxLength="32"
         autoComplete="off"
+        onChange={handleChange}
       />
       <span className="form__error password-input-error"></span>
     </RegistrationForm>

@@ -1,7 +1,7 @@
 import React from "react";
 import RegistrationForm from "./RegistrationForm.jsx";
 
-function Login() {
+function Login(props) {
   return (
     <RegistrationForm
       name="enter-form"
