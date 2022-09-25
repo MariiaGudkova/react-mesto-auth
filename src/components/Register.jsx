@@ -1,17 +1,14 @@
 import React from "react";
 import RegistrationForm from "./RegistrationForm.jsx";
 import { useForm } from "../hooks/useForm.jsx";
+
 function Register(props) {
-  const { onAuthorizationSubmit } = props;
+  const { onRegistrationSubmit, EmailRegex } = props;
   const { values, handleChange, setValues } = useForm({});
 
-  async function handleSubmit(event) {
-    try {
-      event.preventDefault();
-      onAuthorizationSubmit(values);
-    } catch (e) {
-      console.error(e);
-    }
+  function handleSubmit(event) {
+    event.preventDefault();
+    onRegistrationSubmit(values);
   }
 
   return (
@@ -30,8 +27,9 @@ function Register(props) {
         name="email"
         placeholder="Email"
         required
-        minLength="3"
+        minLength="6"
         maxLength="64"
+        mask={EmailRegex}
         onChange={handleChange}
       />
       <span className="form__error email-input-error"></span>

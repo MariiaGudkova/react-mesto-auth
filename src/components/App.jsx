@@ -15,7 +15,9 @@ import ImagePopup from "./ImagePopup.jsx";
 import InfoTooltip from "./InfoTooltip";
 import Footer from "./Footer.jsx";
 import api from "../utils/api.js";
-import * as register from "../utils/auth.js";
+import { register } from "../utils/auth.js";
+import { authorize } from "../utils/auth.js";
+import { getContent } from "../utils/auth.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 function App() {
@@ -32,8 +34,11 @@ function App() {
   const [cardToDelete, setCardToDelete] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [authorizationSuccess, setAuthorizationSuccess] = React.useState(null);
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [userEmail, setUserEmail] = React.useState("");
   const history = useHistory();
-  const loggedIn = true;
+  const EmailRegex = /^\S+@\S+\.\S+$/;
+  let serverErrorMessage = "";
   const isOpen =
     isEditAvatarPopupOpen ||
     isEditProfilePopupOpen ||
@@ -44,6 +49,10 @@ function App() {
     getApiUserInfo();
     getApiCardsInfo();
   }, []);
+
+  React.useEffect(() => {
+    tokenCheck();
+  });
 
   React.useEffect(() => {
     function closeByEscape(evt) {
@@ -177,21 +186,41 @@ function App() {
     }
   }
 
-  async function hanldeAthorization(authData) {
+  async function hanldeRegistration(authData) {
     const { email, password } = authData;
-    console.log(email, password);
     try {
-      const response = await register(email, password);
-      console.log(response);
+      const response = await register(password, email);
       if (response) {
+        localStorage.setItem("jwt", response.jwt);
         setIsInfoTooltipOpen(true);
         setAuthorizationSuccess(true);
         history.push("/sign-in");
       }
     } catch (e) {
-      console.error();
+      serverErrorMessage = e.response;
       setIsInfoTooltipOpen(true);
-      setAuthorizationSuccess(true);
+      setAuthorizationSuccess(false);
+      console.error();
+    }
+  }
+
+  async function hanldeAthorization(authData) {
+    const { email, password } = authData;
+    try {
+      const response = await authorize(password, email);
+      if (response.token) {
+        localStorage.setItem("jwt", response.token);
+        setIsInfoTooltipOpen(true);
+        setAuthorizationSuccess(true);
+        setLoggedIn(true);
+        setUserEmail(response.email);
+        history.push("/");
+      }
+    } catch (e) {
+      serverErrorMessage = e.response;
+      setIsInfoTooltipOpen(true);
+      setAuthorizationSuccess(false);
+      console.error();
     }
   }
 
@@ -204,11 +233,37 @@ function App() {
     setCardToDelete(null);
   }
 
+  function tokenCheck() {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      getContent(jwt).then((res) => {
+        if (res) {
+          console.info("aa", { res });
+          setLoggedIn(true);
+          setUserEmail(res.email);
+          console.info(history);
+          history.push("/");
+        }
+      });
+    }
+  }
+
+  function logoutUserProfile() {
+    localStorage.removeItem("jwt");
+    history.push("/sign-in");
+    setLoggedIn(false);
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Switch>
         <ProtectedRoute exact path="/" loggedIn={loggedIn}>
-          <Header buttonText="Выйти" loggedIn={loggedIn} />
+          <Header
+            buttonText="Выйти"
+            loggedIn={loggedIn}
+            userEmail={userEmail}
+            onLogoutUserProfile={logoutUserProfile}
+          />
           <Main
             onEditProfile={handleEditProfileClick}
             onAddPlace={handleAddPlaceClick}
@@ -221,11 +276,17 @@ function App() {
         </ProtectedRoute>
         <Route path="/sign-up">
           <Header buttonText="Войти" loggedIn={loggedIn} />
-          <Register onAuthorizationSubmit={hanldeAthorization} />
+          <Register
+            onRegistrationSubmit={hanldeRegistration}
+            EmailRegex={EmailRegex}
+          />
         </Route>
         <Route path="/sign-in">
           <Header buttonText="Регистрация" loggedIn={loggedIn} />
-          <Login />
+          <Login
+            onAthorizationSubmit={hanldeAthorization}
+            EmailRegex={EmailRegex}
+          />
         </Route>
       </Switch>
       {/* Popups */}
@@ -262,6 +323,7 @@ function App() {
         isOpen={isInfoTooltipOpen}
         onClose={closeAllPopups}
         isSuccess={authorizationSuccess}
+        serverErrorMessage={serverErrorMessage}
       />
       <Footer />
     </CurrentUserContext.Provider>

@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import headerLogo from "../images/header__logo.svg";
 
 function Header(props) {
-  const { loggedIn, buttonText } = props;
+  const { loggedIn, buttonText, userEmail, onLogoutUserProfile } = props;
   const location = useLocation();
   const [open, setOpen] = React.useState(false);
   const close = () => setOpen(false);
@@ -21,14 +21,14 @@ function Header(props) {
         className={!open ? "header__menu" : "header__menu header__menu_active"}
       >
         <p className="header__email-info header__email-info_auth">
-          myemail@email
+          {`${userEmail}`}
         </p>
-        <Link
-          to="/sign-in"
+        <button
           className=" header__link-button header__link-button_auth"
+          onClick={onLogoutUserProfile}
         >
           {`${buttonText}`}
-        </Link>
+        </button>
       </div>
       <ul
         className={!open ? "header__burger_active" : "header__burger"}

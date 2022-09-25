@@ -4,7 +4,7 @@ import successIcon from "../images/popup__image-tool-tip-success.png";
 import unSuccessIcon from "../images/popup__image-tool-tip-unsuccess.png";
 
 function InfoTooltip(props) {
-  const { isOpen, onClose, isSuccess } = props;
+  const { isOpen, onClose, isSuccess, serverErrorMessage } = props;
   return (
     <div
       className={`popup popup_info-tool-tip ${isOpen ? "popup_opened" : ""}`}
@@ -29,7 +29,8 @@ function InfoTooltip(props) {
         <h2 className="popup__title popup__title_info-tool-tip">
           {isSuccess
             ? "Вы успешно зарегистрировались!"
-            : "Что-то пошло не так! Попробуйте ещё раз."}
+            : // serverErrorMessage
+              "Что-то пошло не так! Попробуйте ещё раз."}
         </h2>
       </div>
     </div>
