@@ -23,12 +23,13 @@ function Header(props) {
         <p className="header__email-info header__email-info_auth">
           {`${userEmail}`}
         </p>
-        <button
+        <Link
+          to="/sign-in"
           className=" header__link-button header__link-button_auth"
           onClick={onLogoutUserProfile}
         >
           {`${buttonText}`}
-        </button>
+        </Link>
       </div>
       <ul
         className={!open ? "header__burger_active" : "header__burger"}
