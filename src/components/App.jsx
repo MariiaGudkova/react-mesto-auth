@@ -35,6 +35,7 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [authorizationSuccess, setAuthorizationSuccess] = React.useState(null);
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [isAuthorization, setIsAuthorization] = React.useState(false);
   const [userEmail, setUserEmail] = React.useState("");
   const history = useHistory();
   const EmailRegex = /^\S+@\S+\.\S+$/;
@@ -213,7 +214,8 @@ function App() {
         setIsInfoTooltipOpen(true);
         setAuthorizationSuccess(true);
         setLoggedIn(true);
-        setUserEmail(response.email);
+        setIsAuthorization(true);
+        setUserEmail(email);
         history.push("/");
       }
     } catch (e) {
@@ -238,10 +240,8 @@ function App() {
     if (jwt) {
       getContent(jwt).then((res) => {
         if (res) {
-          console.info("aa", { res });
           setLoggedIn(true);
           setUserEmail(res.email);
-          console.info(history);
           history.push("/");
         }
       });
@@ -324,6 +324,7 @@ function App() {
         onClose={closeAllPopups}
         isSuccess={authorizationSuccess}
         serverErrorMessage={serverErrorMessage}
+        isAuthorization={isAuthorization}
       />
       <Footer />
     </CurrentUserContext.Provider>
