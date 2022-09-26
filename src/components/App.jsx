@@ -192,7 +192,7 @@ function App() {
     try {
       const response = await register(password, email);
       if (response) {
-        localStorage.setItem("jwt", response.jwt);
+        // localStorage.setItem("jwt", response.token);
         setIsInfoTooltipOpen(true);
         setAuthorizationSuccess(true);
         history.push("/sign-in");
