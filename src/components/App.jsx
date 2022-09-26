@@ -37,9 +37,9 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isAuthorization, setIsAuthorization] = React.useState(false);
   const [userEmail, setUserEmail] = React.useState("");
+  const [serverErrorMessage, setServerErrorMessage] = React.useState("");
   const history = useHistory();
   const EmailRegex = /^\S+@\S+\.\S+$/;
-  let serverErrorMessage = "";
   const isOpen =
     isEditAvatarPopupOpen ||
     isEditProfilePopupOpen ||
@@ -189,39 +189,38 @@ function App() {
 
   async function hanldeRegistration(authData) {
     const { email, password } = authData;
-    try {
-      const response = await register(password, email);
-      if (response) {
-        setIsInfoTooltipOpen(true);
-        setAuthorizationSuccess(true);
-        history.push("/sign-in");
-      }
-    } catch (e) {
-      serverErrorMessage = e.response;
+    const response = await register(password, email);
+
+    if (response.error) {
+      setServerErrorMessage(response.error);
       setIsInfoTooltipOpen(true);
       setAuthorizationSuccess(false);
-      console.error();
+    }
+
+    if (response.data) {
+      setIsInfoTooltipOpen(true);
+      setAuthorizationSuccess(true);
+      history.push("/sign-in");
     }
   }
 
   async function hanldeAthorization(authData) {
     const { email, password } = authData;
-    try {
-      const response = await authorize(password, email);
-      if (response.token) {
-        localStorage.setItem("jwt", response.token);
-        setIsInfoTooltipOpen(true);
-        setAuthorizationSuccess(true);
-        setLoggedIn(true);
-        setIsAuthorization(true);
-        // setUserEmail(email);
-        history.push("/");
-      }
-    } catch (e) {
-      serverErrorMessage = e.response;
+    const response = await authorize(password, email);
+
+    if (response.error) {
+      setServerErrorMessage(response.error);
       setIsInfoTooltipOpen(true);
       setAuthorizationSuccess(false);
-      console.error();
+    }
+
+    if (response.token) {
+      localStorage.setItem("jwt", response.token);
+      setIsInfoTooltipOpen(true);
+      setAuthorizationSuccess(true);
+      setLoggedIn(true);
+      setIsAuthorization(true);
+      history.push("/");
     }
   }
 
@@ -240,7 +239,7 @@ function App() {
       getContent(jwt).then((res) => {
         if (res) {
           setLoggedIn(true);
-          setUserEmail(res.email);
+          setUserEmail(res?.data?.email);
           history.push("/");
         }
       });

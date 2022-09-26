@@ -31,10 +31,7 @@ function InfoTooltip(props) {
           alt="Иконка подтверждения регистрации"
         />
         <h2 className="popup__title popup__title_info-tool-tip">
-          {isSuccess
-            ? serverSuccessMessage
-            : // serverErrorMessage
-              "Что-то пошло не так! Попробуйте ещё раз."}
+          {isSuccess ? serverSuccessMessage : serverErrorMessage}
         </h2>
       </div>
     </div>
