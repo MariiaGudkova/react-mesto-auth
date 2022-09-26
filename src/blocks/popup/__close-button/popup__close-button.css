@@ -1,25 +1,25 @@
 .popup__close-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    position: fixed;
-    padding: 0;
-    top: 155px;
-    left: calc(50% + 223px);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  padding: 0;
+  top: 155px;
+  left: calc(50% + 223px);
 }
 
 .popup__close-button:hover {
-    opacity: 0.6;
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 530px) {
-    .popup__close-button {
-        left: calc(100% - 39px);
-    }
+  .popup__close-button {
+    left: calc(100% - 39px);
+  }
 }
 
 @media screen and (max-width: 468px) {
-    .popup__close-button {
-        top: 86px;
-    }
+  .popup__close-button {
+    top: 95px;
+  }
 }

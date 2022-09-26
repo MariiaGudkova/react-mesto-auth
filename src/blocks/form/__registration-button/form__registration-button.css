@@ -1,9 +1,10 @@
-.form__save-button {
+.form__registration-button {
   width: 100%;
   max-width: 358px;
   height: 50px;
+  margin-bottom: 15px;
   padding: 0;
-  background: #000000;
+  background: #ffffff;
   outline: none;
   border: none;
   border-radius: 2px;
@@ -13,18 +14,19 @@
   font-size: 18px;
   line-height: 22px;
   text-align: center;
-  color: #ffffff;
+  color: #000000;
   cursor: pointer;
 }
 
-.form__save-button:hover {
-  opacity: 0.8;
+.form__registration-button:hover {
+  opacity: 0.85;
 }
 
-@media screen and (max-width: 468px) {
-  .form__save-button {
-    font-size: 14px;
-    line-height: 17px;
+@media screen and (max-width: 400px) {
+  .form__registration-button {
+    font-size: 16px;
+    line-height: 19px;
     height: 46px;
+    margin-bottom: 20px;
   }
 }

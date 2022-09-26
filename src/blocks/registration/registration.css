@@ -1,0 +1,15 @@
+.registration {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 358px;
+  width: 100%;
+  margin-bottom: 200px;
+}
+
+@media screen and (max-width: 400px) {
+  .registration {
+    max-width: 260px;
+  }
+}

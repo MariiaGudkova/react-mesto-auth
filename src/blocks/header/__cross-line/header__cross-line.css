@@ -1,0 +1,17 @@
+.header__cross-line {
+  padding: 0;
+  margin: 0;
+  width: 24px;
+  height: 3px;
+  background-color: #ffffff;
+}
+
+.header__cross-line:first-of-type {
+  transform: rotate(45deg);
+  margin-top: 2px;
+}
+
+.header__cross-line:last-of-type {
+  transform: rotate(-45deg);
+  margin-top: -3px;
+}

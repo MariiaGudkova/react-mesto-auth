@@ -10,14 +10,17 @@
 @import url(./blocks/popup/popup.css);
 @import url(./blocks/popup/_large-img/popup_large-img.css);
 @import url(./blocks/popup/__content/popup__content.css);
+@import url(./blocks/popup/__content/_info-tool-tip/popup__content_info-tool-tip.css);
 @import url(./blocks/popup/__large-img-content/popup__large-img-content.css);
 @import url(./blocks/popup/__title/popup__title.css);
+@import url(./blocks/popup/__title/_info-tool-tip/popup__title_info-tool-tip.css);
 @import url(./blocks/popup/__close-button/popup__close-button.css);
 @import url(./blocks/popup/__close-button/_large-image/popup__close-button_large-image.css);
 @import url(./blocks/popup/__close-icon/popup__close-icon.css);
 @import url(./blocks/popup/__large-img-image/popup__large-img-image.css);
 @import url(./blocks/popup/__large-img-signature/popup__large-img-signature.css);
 @import url(./blocks/popup/_opened/popup_opened.css);
+@import url(./blocks/popup/__image-tool-tip/popup__image-tool-tip.css);
 @import url(./blocks/form/__fieldset/form__fieldset.css);
 @import url(./blocks/form/__input/form__input.css);
 @import url(./blocks/form/__input/_text_description/form__input_text_description.css);
@@ -31,7 +34,21 @@
 /* Header styles */
 
 @import url(./blocks/header/header.css);
+@import url(./blocks/header/_auth/header_auth.css);
+@import url(./blocks/header/_auth-active/header_auth-active.css);
 @import url(./blocks/header/__logo/header__logo.css);
+@import url(./blocks/header/__link-button/header__link-button.css);
+@import url(./blocks/header/__link-button/_auth/header__link-button_auth.css);
+@import url(./blocks/header/__email-info/header__email-info.css);
+@import url(./blocks/header/__email-info/_auth/header__email-info_auth.css);
+@import url(./blocks/header/__menu/header__menu.css);
+@import url(./blocks/header/__menu/_active/header__menu_active.css);
+@import url(./blocks/header/__burger/header__burger.css);
+@import url(./blocks/header/__burger/_active/header__burger_active.css);
+@import url(./blocks/header/__burger-line/header__burger-line.css);
+@import url(./blocks/header/__cross/header__cross.css);
+@import url(./blocks/header/__cross/_active/header__cross_active.css);
+@import url(./blocks/header/__cross-line/header__cross-line.css);
 
 /* Profile styles */
 
@@ -63,7 +80,15 @@
 @import url(./blocks/element/__trash-button/_hidden/element__trash-button_hidden.css);
 @import url(./blocks/element/__trash-button-image/element__trash-button-image.css);
 
+/* Registration styles*/
+@import url(./blocks/registration/registration.css);
+@import url(./blocks/registration/__title/registration__title.css);
+@import url(./blocks/registration/__subtitle/registration__subtitle.css);
+
 /* Footer styles*/
 
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__info/footer__info.css);
+@import url(./blocks/form/__input/_email/form__input_email.css);
+@import url(./blocks/form/__input/_password/form__input_password.css);
+@import url(./blocks/form/__registration-button/form__registration-button.css);
