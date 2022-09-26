@@ -192,7 +192,6 @@ function App() {
     try {
       const response = await register(password, email);
       if (response) {
-        // localStorage.setItem("jwt", response.token);
         setIsInfoTooltipOpen(true);
         setAuthorizationSuccess(true);
         history.push("/sign-in");
@@ -215,7 +214,7 @@ function App() {
         setAuthorizationSuccess(true);
         setLoggedIn(true);
         setIsAuthorization(true);
-        setUserEmail(email);
+        // setUserEmail(email);
         history.push("/");
       }
     } catch (e) {
