@@ -1,4 +1,5 @@
 import React from "react";
+import Popup from "./Popup.jsx";
 import PopupWithForm from "./PopupWithForm.jsx";
 
 function DeletePlacePopup(props) {
@@ -9,14 +10,17 @@ function DeletePlacePopup(props) {
     onDeletePlace(card);
   }
   return (
-    <PopupWithForm
-      name="delete-card"
-      title="Вы уверены?"
-      buttonText={isLoading ? "Удаление..." : "Да"}
-      isOpen={Boolean(card)}
-      onClose={onClose}
-      onSubmit={handleSubmit}
-    />
+    <>
+      <Popup isOpen={card} onClose={onClose} />
+      <PopupWithForm
+        name="delete-card"
+        title="Вы уверены?"
+        buttonText={isLoading ? "Удаление..." : "Да"}
+        isOpen={Boolean(card)}
+        onClose={onClose}
+        onSubmit={handleSubmit}
+      />
+    </>
   );
 }
 

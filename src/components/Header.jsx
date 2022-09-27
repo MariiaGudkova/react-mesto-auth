@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import headerLogo from "../images/header__logo.svg";
+import { routes } from "../utils/routes.js";
 
 function Header(props) {
   const { loggedIn, buttonText, userEmail, onLogoutUserProfile } = props;
@@ -10,7 +11,7 @@ function Header(props) {
   function onClick() {
     return setOpen(!open);
   }
-  return { loggedIn } && location.pathname === "/" ? (
+  return { loggedIn } && location.pathname === routes.baseRoute ? (
     <header
       className={
         !open ? "header header_auth" : "header header_auth header_auth-active"
@@ -21,14 +22,14 @@ function Header(props) {
         className={!open ? "header__menu" : "header__menu header__menu_active"}
       >
         <p className="header__email-info header__email-info_auth">
-          {`${userEmail}`}
+          {userEmail}
         </p>
         <Link
-          to="/sign-in"
+          to={routes.signIn}
           className=" header__link-button header__link-button_auth"
           onClick={onLogoutUserProfile}
         >
-          {`${buttonText}`}
+          {buttonText}
         </Link>
       </div>
       <ul
@@ -53,9 +54,11 @@ function Header(props) {
     <header className="header">
       <img className="header__logo" src={headerLogo} alt="Логотип" />
       <Link
-        to={location.pathname === "/sign-in" ? "/sign-up" : "/sign-in"}
+        to={location.pathname === routes.signIn ? routes.signUp : routes.signIn}
         className="header__link-button"
-      >{`${buttonText}`}</Link>
+      >
+        {buttonText}
+      </Link>
     </header>
   );
 }

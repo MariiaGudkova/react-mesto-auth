@@ -13,10 +13,10 @@ function RegistrationForm(props) {
   } = props;
   return (
     <div className="registration">
-      <h2 className="registration__title">{`${title}`}</h2>
+      <h2 className="registration__title">{title}</h2>
       <form
         className={`form form_${name}`}
-        name={`${name}`}
+        name={name}
         action="#"
         autoComplete="off"
         onSubmit={onSubmit}
@@ -27,14 +27,13 @@ function RegistrationForm(props) {
             className={`form__registration-button form__registration-button_${name}`}
             type="submit"
           >
-            {`${buttonText}`}
+            {buttonText}
           </button>
         </fieldset>
       </form>
-      <Link
-        className="registration__subtitle"
-        to={`${linkAdress}`}
-      >{`${subtitleText}`}</Link>
+      <Link className="registration__subtitle" to={linkAdress}>
+        {subtitleText}
+      </Link>
     </div>
   );
 }
