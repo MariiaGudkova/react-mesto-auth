@@ -3,7 +3,7 @@ import RegistrationForm from "./RegistrationForm.jsx";
 import { useForm } from "../hooks/useForm.jsx";
 
 function Login(props) {
-  const { onAthorizationSubmit, EmailRegex } = props;
+  const { onAthorizationSubmit, emailRegex } = props;
   const { values, handleChange, setValues } = useForm({});
 
   function handleSubmit(event) {
@@ -28,7 +28,7 @@ function Login(props) {
         required
         minLength="3"
         maxLength="64"
-        mask={EmailRegex}
+        mask={emailRegex}
         onChange={handleChange}
       />
       <span className="form__error email-input-error"></span>

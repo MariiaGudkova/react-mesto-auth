@@ -2,7 +2,6 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute.jsx";
-import "../index.css";
 import Header from "./Header.jsx";
 import Main from "./Main.jsx";
 import Login from "./Login.jsx";
@@ -15,6 +14,7 @@ import ImagePopup from "./ImagePopup.jsx";
 import InfoTooltip from "./InfoTooltip";
 import Footer from "./Footer.jsx";
 import api from "../utils/api.js";
+import { routes } from "../utils/routes.js";
 import { register } from "../utils/auth.js";
 import { authorize } from "../utils/auth.js";
 import { getContent } from "../utils/auth.js";
@@ -39,35 +39,18 @@ function App() {
   const [userEmail, setUserEmail] = React.useState("");
   const [serverErrorMessage, setServerErrorMessage] = React.useState("");
   const history = useHistory();
-  const EmailRegex = /^\S+@\S+\.\S+$/;
-  const isOpen =
-    isEditAvatarPopupOpen ||
-    isEditProfilePopupOpen ||
-    isAddPlacePopupOpen ||
-    selectedCard;
+  const emailRegex = /^\S+@\S+\.\S+$/;
 
   React.useEffect(() => {
-    getApiUserInfo();
-    getApiCardsInfo();
-  }, []);
+    if (loggedIn) {
+      getApiUserInfo();
+      getApiCardsInfo();
+    }
+  }, [loggedIn]);
 
   React.useEffect(() => {
     tokenCheck();
   });
-
-  React.useEffect(() => {
-    function closeByEscape(evt) {
-      if (evt.key === "Escape") {
-        closeAllPopups();
-      }
-    }
-    if (isOpen) {
-      document.addEventListener("keydown", closeByEscape);
-      return () => {
-        document.removeEventListener("keydown", closeByEscape);
-      };
-    }
-  }, [isOpen]);
 
   async function getApiUserInfo() {
     try {
@@ -200,7 +183,7 @@ function App() {
     if (response.data) {
       setIsInfoTooltipOpen(true);
       setAuthorizationSuccess(true);
-      history.push("/sign-in");
+      history.push(routes.signIn);
     }
   }
 
@@ -220,7 +203,7 @@ function App() {
       setAuthorizationSuccess(true);
       setLoggedIn(true);
       setIsAuthorization(true);
-      history.push("/");
+      history.push(routes.baseRoute);
     }
   }
 
@@ -236,26 +219,30 @@ function App() {
   function tokenCheck() {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
-      getContent(jwt).then((res) => {
-        if (res) {
-          setLoggedIn(true);
-          setUserEmail(res?.data?.email);
-          history.push("/");
-        }
-      });
+      getContent(jwt)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            setUserEmail(res?.data?.email);
+            history.push(routes.baseRoute);
+          }
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
     }
   }
 
   function logoutUserProfile() {
     localStorage.removeItem("jwt");
-    history.push("/sign-in");
+    history.push(routes.signIn);
     setLoggedIn(false);
   }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Switch>
-        <ProtectedRoute exact path="/" loggedIn={loggedIn}>
+        <ProtectedRoute exact path={routes.baseRoute} loggedIn={loggedIn}>
           <Header
             buttonText="Выйти"
             loggedIn={loggedIn}
@@ -272,18 +259,18 @@ function App() {
             onCardDelete={handleCardDeleteClick}
           />
         </ProtectedRoute>
-        <Route path="/sign-up">
+        <Route path={routes.signUp}>
           <Header buttonText="Войти" loggedIn={loggedIn} />
           <Register
             onRegistrationSubmit={hanldeRegistration}
-            EmailRegex={EmailRegex}
+            emailRegex={emailRegex}
           />
         </Route>
-        <Route path="/sign-in">
+        <Route path={routes.signIn}>
           <Header buttonText="Регистрация" loggedIn={loggedIn} />
           <Login
             onAthorizationSubmit={hanldeAthorization}
-            EmailRegex={EmailRegex}
+            emailRegex={emailRegex}
           />
         </Route>
       </Switch>

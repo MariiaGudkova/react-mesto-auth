@@ -1,4 +1,5 @@
 import React from "react";
+import Popup from "./Popup.jsx";
 import PopupWithForm from "./PopupWithForm.jsx";
 import { useForm } from "../hooks/useForm.jsx";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
@@ -20,41 +21,44 @@ function EditProfilePopup(props) {
   }
 
   return (
-    <PopupWithForm
-      name="personal-data"
-      title="Редактировать&nbsp;профиль"
-      buttonText={isLoading ? "Сохранение..." : "Сохранить"}
-      isOpen={isOpen}
-      onClose={onClose}
-      onSubmit={handleSubmit}
-    >
-      <input
-        className="form__input form__input_text_name"
-        id="name-input"
-        type="text"
-        name="name"
-        placeholder="Имя"
-        required
-        minLength="2"
-        maxLength="40"
-        value={values.name || ""}
-        onChange={handleChange}
-      />
-      <span className="form__error name-input-error"></span>
-      <input
-        className="form__input form__input_text_description"
-        id="description-input"
-        type="text"
-        name="about"
-        placeholder="О себе"
-        required
-        minLength="2"
-        maxLength="200"
-        value={values.about || ""}
-        onChange={handleChange}
-      />
-      <span className="form__error description-input-error"></span>
-    </PopupWithForm>
+    <>
+      <Popup isOpen={isOpen} onClose={onClose} />
+      <PopupWithForm
+        name="personal-data"
+        title="Редактировать&nbsp;профиль"
+        buttonText={isLoading ? "Сохранение..." : "Сохранить"}
+        isOpen={isOpen}
+        onClose={onClose}
+        onSubmit={handleSubmit}
+      >
+        <input
+          className="form__input form__input_text_name"
+          id="name-input"
+          type="text"
+          name="name"
+          placeholder="Имя"
+          required
+          minLength="2"
+          maxLength="40"
+          value={values.name || ""}
+          onChange={handleChange}
+        />
+        <span className="form__error name-input-error"></span>
+        <input
+          className="form__input form__input_text_description"
+          id="description-input"
+          type="text"
+          name="about"
+          placeholder="О себе"
+          required
+          minLength="2"
+          maxLength="200"
+          value={values.about || ""}
+          onChange={handleChange}
+        />
+        <span className="form__error description-input-error"></span>
+      </PopupWithForm>
+    </>
   );
 }
 

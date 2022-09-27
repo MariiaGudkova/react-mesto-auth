@@ -18,10 +18,10 @@ function PopupWithForm(props) {
         />
       </button>
       <div className="popup__content">
-        <h2 className="popup__title">{`${title}`}</h2>
+        <h2 className="popup__title">{title}</h2>
         <form
           className={`form form_${name}`}
-          name={`${name}`}
+          name={name}
           action="#"
           autoComplete="off"
           onSubmit={onSubmit}
@@ -32,7 +32,7 @@ function PopupWithForm(props) {
               className={`form__save-button form__save-button_${name}`}
               type="submit"
             >
-              {`${buttonText}`}
+              {buttonText}
             </button>
           </fieldset>
         </form>

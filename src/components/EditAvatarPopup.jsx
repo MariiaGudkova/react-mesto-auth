@@ -1,4 +1,5 @@
 import React from "react";
+import Popup from "./Popup.jsx";
 import PopupWithForm from "./PopupWithForm.jsx";
 
 function EditAvatarPopup(props) {
@@ -21,25 +22,28 @@ function EditAvatarPopup(props) {
   }, [isOpen]);
 
   return (
-    <PopupWithForm
-      name="change-avatar"
-      title="Обновить аватар"
-      buttonText={isLoading ? "Сохранение..." : "Сохранить"}
-      isOpen={isOpen}
-      onClose={onClose}
-      onSubmit={handleSubmit}
-    >
-      <input
-        className="form__input form__input_avatar_image"
-        id="image-link-input"
-        type="url"
-        name="avatar"
-        placeholder="Ссылка на картинку"
-        required
-        ref={avatarRef}
-      />
-      <span className="form__error image-link-input-error"></span>
-    </PopupWithForm>
+    <>
+      <Popup isOpen={isOpen} onClose={onClose} />
+      <PopupWithForm
+        name="change-avatar"
+        title="Обновить аватар"
+        buttonText={isLoading ? "Сохранение..." : "Сохранить"}
+        isOpen={isOpen}
+        onClose={onClose}
+        onSubmit={handleSubmit}
+      >
+        <input
+          className="form__input form__input_avatar_image"
+          id="image-link-input"
+          type="url"
+          name="avatar"
+          placeholder="Ссылка на картинку"
+          required
+          ref={avatarRef}
+        />
+        <span className="form__error image-link-input-error"></span>
+      </PopupWithForm>
+    </>
   );
 }
 

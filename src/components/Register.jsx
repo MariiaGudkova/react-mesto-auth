@@ -1,9 +1,10 @@
 import React from "react";
 import RegistrationForm from "./RegistrationForm.jsx";
 import { useForm } from "../hooks/useForm.jsx";
+import { routes } from "../utils/routes.js";
 
 function Register(props) {
-  const { onRegistrationSubmit, EmailRegex } = props;
+  const { onRegistrationSubmit, emailRegex } = props;
   const { values, handleChange, setValues } = useForm({});
 
   function handleSubmit(event) {
@@ -18,7 +19,7 @@ function Register(props) {
       buttonText="Зарегистрироваться"
       onSubmit={handleSubmit}
       subtitleText="Уже зарегистрированы? Войти"
-      linkAdress="/sign-in"
+      linkAdress={routes.signIn}
     >
       <input
         className="form__input form__input_email"
@@ -29,7 +30,7 @@ function Register(props) {
         required
         minLength="6"
         maxLength="64"
-        mask={EmailRegex}
+        mask={emailRegex}
         onChange={handleChange}
       />
       <span className="form__error email-input-error"></span>
