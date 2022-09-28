@@ -50,7 +50,7 @@ function App() {
 
   React.useEffect(() => {
     tokenCheck();
-  });
+  }, []);
 
   async function getApiUserInfo() {
     try {
