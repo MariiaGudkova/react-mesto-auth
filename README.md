@@ -34,4 +34,4 @@ _В проекте был отработан навык работы с React Ro
 
 <a href="https://mariiagudkova.github.io/react-mesto-auth/" target="_blank">Сервис Mesto-React Router</a>
 
-<img src="https://komarev.com/ghpvc/?username=your-github-username&style=flat-square&color=9932CC" alt=""/>
+<img src="https://komarev.com/ghpvc/?username=MariiaGudkova&style=flat-square&color=9932CC" alt=""/>
